@@ -1,4 +1,4 @@
-package com.tolerance_calculator.tolerancecalculator;
+package com.de.guehring.tolerancecalculator;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

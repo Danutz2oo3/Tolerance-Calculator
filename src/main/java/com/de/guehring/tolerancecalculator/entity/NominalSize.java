@@ -1,4 +1,4 @@
-package com.tolerance_calculator.tolerancecalculator.entity;
+package com.de.guehring.tolerancecalculator.entity;
 
 import jakarta.persistence.*;
 

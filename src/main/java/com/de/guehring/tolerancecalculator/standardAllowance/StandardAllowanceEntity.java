@@ -1,6 +1,6 @@
-package com.tolerance_calculator.tolerancecalculator.StandardAllowance;
+package com.de.guehring.tolerancecalculator.standardAllowance;
 
-import com.tolerance_calculator.tolerancecalculator.entity.Type;
+import com.de.guehring.tolerancecalculator.entity.Type;
 import jakarta.persistence.*;
 
 import java.util.Objects;

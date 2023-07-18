@@ -1,4 +1,4 @@
-package com.tolerance_calculator.tolerancecalculator;
+package com.de.guehring.tolerancecalculator;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

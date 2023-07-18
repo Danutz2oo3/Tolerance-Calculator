@@ -1,0 +1,21 @@
+services:
+  db:
+    container_name: tolerance
+    image: mysql
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      PGDATA: /data/mysql
+    volumes:
+      - db:/data/mysql
+    ports:
+      - "1234:3306"
+    networks:
+      - db
+    restart: unless-stopped
+
+networks:
+  db:
+    driver: bridge
+volumes:
+  db:
