@@ -1,8 +1,11 @@
 package com.de.guehring.tolerancecalculator.gradeOfTolerance;
 
+import com.de.guehring.tolerancecalculator.toleranceClass.ToleranceClassEntity;
 import jakarta.persistence.*;
 
+import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "grade_of_tolerance_entity")
@@ -10,10 +13,24 @@ public class GradeOfToleranceEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
+
+
+
     private Long id;
     private Long min;
     private Long max;
     private String name;
+
+    @OneToMany(mappedBy = "gradeOfTolerance")
+    private Set<ToleranceClassEntity> toleranceClassEntities = new LinkedHashSet<>();
+
+    public Set<ToleranceClassEntity> getToleranceClassEntities() {
+        return toleranceClassEntities;
+    }
+
+    public void setToleranceClassEntities(Set<ToleranceClassEntity> toleranceClassEntities) {
+        this.toleranceClassEntities = toleranceClassEntities;
+    }
 
     public GradeOfToleranceEntity(Long min, Long max, String name) {
         this.min = min;

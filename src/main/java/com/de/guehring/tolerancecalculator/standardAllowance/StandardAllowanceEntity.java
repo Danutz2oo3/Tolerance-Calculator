@@ -1,9 +1,12 @@
 package com.de.guehring.tolerancecalculator.standardAllowance;
 
 import com.de.guehring.tolerancecalculator.entity.Type;
+import com.de.guehring.tolerancecalculator.toleranceClass.ToleranceClassEntity;
 import jakarta.persistence.*;
 
+import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -17,6 +20,18 @@ public class StandardAllowanceEntity {
     private Type type;
     private Long max;
     private Long min;
+
+    @OneToMany(mappedBy = "standardAllowance", orphanRemoval = true)
+    private Set<ToleranceClassEntity> toleranceClassEntities = new LinkedHashSet<>();
+
+    public Set<ToleranceClassEntity> getToleranceClassEntities() {
+        return toleranceClassEntities;
+    }
+
+    public void setToleranceClassEntities(Set<ToleranceClassEntity> toleranceClassEntities) {
+        this.toleranceClassEntities = toleranceClassEntities;
+    }
+
     public StandardAllowanceEntity(String name, Type type, Long max, Long min) {
         this.name = name;
         this.max = max;

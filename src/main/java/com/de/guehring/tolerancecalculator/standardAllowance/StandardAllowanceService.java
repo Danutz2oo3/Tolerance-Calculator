@@ -1,10 +1,12 @@
 package com.de.guehring.tolerancecalculator.standardAllowance;
 
 import com.de.guehring.tolerancecalculator.entity.Type;
+import com.de.guehring.tolerancecalculator.gradeOfTolerance.GradeOfToleranceEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StandardAllowanceService {
@@ -16,10 +18,13 @@ public class StandardAllowanceService {
     }
 
     public List<StandardAllowanceEntity> getStandardAllowance(Long modelSize, Type type) {
-        return standardAllowanceRepository.findStandardAllowanceEnt(modelSize, type);
+        return standardAllowanceRepository.findStandardAllowanceEntitiesBy(modelSize, type);
     }
 
     public List<StandardAllowanceEntity> getAllStandardAllowances() {
         return standardAllowanceRepository.findAll();
+    }
+    public List<StandardAllowanceEntity> getStandardAllowanceByGradeOfTolerance(Long modelSize, Type type, Long gradeOfToleranceId){
+        return standardAllowanceRepository.findStandardAllowanceEntitiesBy(modelSize, type, gradeOfToleranceId);
     }
 }
