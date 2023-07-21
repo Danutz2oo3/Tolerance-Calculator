@@ -1,6 +1,6 @@
 package com.de.guehring.tolerancecalculator.standardAllowance;
 
-import com.de.guehring.tolerancecalculator.entity.Type;
+import com.de.guehring.tolerancecalculator.standardAllowance.Type;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,18 +13,21 @@ import java.util.Optional;
 @Repository
 public interface StandardAllowanceRepository extends JpaRepository<StandardAllowanceEntity,Long> {
     @Query(value = "SELECT s FROM StandardAllowanceEntity s " +
-            "WHERE (:modelDimension is null or s.max >= :modelDimension " +
-            "and s.min < :modelDimension) " +
+            "WHERE (:nominalDimension is null or s.max >= :nominalDimension " +
+            "and s.min < :nominalDimension) " +
             "and (:type is null or s.type = :type)")
-    List<StandardAllowanceEntity> findStandardAllowanceEntitiesBy(@Param("modelDimension") Long modelDimension, @Param("type") Type type);
+    List<StandardAllowanceEntity> findStandardAllowanceEntitiesBy(@Param("nominalDimension") Long nominalDimension, @Param("type") Type type);
 
     @Query(value = "SELECT sa " +
             "FROM GradeOfToleranceEntity got, ToleranceClassEntity tce, StandardAllowanceEntity sa " +
-            "where (:modelDimension is null or tce.max >= :modelDimension " +
-            "and tce.min < :modelDimension) " +
+            "where (:nominalDimension is null or tce.max >= :nominalDimension " +
+            "and tce.min < :nominalDimension) " +
             "and sa.id = tce.standardAllowance.id " +
             "and (:gradeOfToleranceId is null or tce.gradeOfTolerance.id = :gradeOfToleranceId) " +
             "and tce.gradeOfTolerance = got " +
             "and (:type is null or sa.type = :type)")
-    List<StandardAllowanceEntity> findStandardAllowanceEntitiesBy(@Param("modelDimension") Long modelDimension, @Param("type") Type type, @Param("gradeOfToleranceId") Long gradeOfToleranceId);
+    List<StandardAllowanceEntity> findStandardAllowanceEntitiesBy(@Param("nominalDimension") Long nominalDimension, @Param("type") Type type, @Param("gradeOfToleranceId") Long gradeOfToleranceId);
+
+    @Query("SELECT sa.id FROM StandardAllowanceEntity sa WHERE sa.name = :name AND sa.type = :type")
+    Long findIdByNameAndType(String name, Type type);
 }

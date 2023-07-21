@@ -1,5 +1,6 @@
 package com.de.guehring.tolerancecalculator.gradeOfTolerance;
 
+import com.de.guehring.tolerancecalculator.standardAllowance.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,13 +14,16 @@ public class GradeOfToleranceService {
     public GradeOfToleranceService(GradeOfToleranceRepository gradeOfToleranceRepository) {
         this.gradeOfToleranceRepository = gradeOfToleranceRepository;
     }
-    public List<GradeOfToleranceEntity> getGradeOfTolerance(Long modelDimension){
-        return gradeOfToleranceRepository.findGradeOfToleranceEntitiesBy(modelDimension);
+    public List<GradeOfToleranceEntity> getGradeOfTolerance(Long nominalDimension){
+        return gradeOfToleranceRepository.findGradeOfToleranceEntitiesBy(nominalDimension);
     }
     public List<GradeOfToleranceEntity> getAllGradeOfTolerance(){
         return gradeOfToleranceRepository.findAll();
     }
-    public List<GradeOfToleranceEntity> getGradeOfToleranceEntitiesByStandardAllowance(Long modelDimension, Long standardAllowanceId){
-        return gradeOfToleranceRepository.findGradeOfToleranceEntitiesBy(modelDimension,standardAllowanceId);
+    public List<GradeOfToleranceEntity> getGradeOfToleranceEntitiesByStandardAllowance(Long nominalDimension, Long standardAllowanceId){
+        return gradeOfToleranceRepository.findGradeOfToleranceEntitiesBy(nominalDimension,standardAllowanceId);
+    }
+    public Long getIdByName(String name) {
+        return gradeOfToleranceRepository.findIdByName(name);
     }
 }

@@ -2,10 +2,13 @@ package com.de.guehring.tolerancecalculator.toleranceClass;
 
 import com.de.guehring.tolerancecalculator.gradeOfTolerance.GradeOfToleranceEntity;
 import com.de.guehring.tolerancecalculator.standardAllowance.StandardAllowanceEntity;
+import com.de.guehring.tolerancecalculator.tolerance.ToleranceEntity;
 import jakarta.persistence.*;
 import org.hibernate.proxy.HibernateProxy;
 
+import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Set;
 
 
 @Entity
@@ -25,6 +28,17 @@ public class ToleranceClassEntity {
     private Long max;
 
     private Long min;
+
+    @OneToMany(mappedBy = "toleranceClass", orphanRemoval = true)
+    private Set<ToleranceEntity> toleranceEntities = new LinkedHashSet<>();
+
+    public Set<ToleranceEntity> getToleranceEntities() {
+        return toleranceEntities;
+    }
+
+    public void setToleranceEntities(Set<ToleranceEntity> toleranceEntities) {
+        this.toleranceEntities = toleranceEntities;
+    }
 
     @Override
     public final boolean equals(Object o) {

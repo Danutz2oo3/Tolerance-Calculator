@@ -1,6 +1,6 @@
 package com.de.guehring.tolerancecalculator.standardAllowance;
 
-import com.de.guehring.tolerancecalculator.entity.Type;
+import com.de.guehring.tolerancecalculator.standardAllowance.Type;
 
 public record StandardAllowanceResponse(
          Long id,

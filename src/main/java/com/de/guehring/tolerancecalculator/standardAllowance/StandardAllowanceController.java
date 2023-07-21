@@ -1,6 +1,6 @@
 package com.de.guehring.tolerancecalculator.standardAllowance;
 
-import com.de.guehring.tolerancecalculator.entity.Type;
+import com.de.guehring.tolerancecalculator.standardAllowance.Type;
 import com.de.guehring.tolerancecalculator.gradeOfTolerance.GradeOfToleranceEntity;
 import com.de.guehring.tolerancecalculator.gradeOfTolerance.GradeOfToleranceResponse;
 import org.springframework.beans.factory.annotation.Autowired;

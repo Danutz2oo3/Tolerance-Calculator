@@ -1,12 +1,15 @@
-package com.de.guehring.tolerancecalculator.entity;
+package com.de.guehring.tolerancecalculator.nominalSize;
 
+import com.de.guehring.tolerancecalculator.tolerance.ToleranceEntity;
 import jakarta.persistence.*;
 
+import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
-@Table(name = "nominal_size")
-public class NominalSize {
+@Table(name = "nominal_size_entity")
+public class NominalSizeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -14,11 +17,22 @@ public class NominalSize {
     private Integer upperBound;
     private Integer lowerBound;
 
-    public NominalSize(Integer upperBound, Integer lowerBound) {
+    @OneToMany(mappedBy = "nominalSize", orphanRemoval = true)
+    private Set<ToleranceEntity> toleranceEntities = new LinkedHashSet<>();
+
+    public Set<ToleranceEntity> getToleranceEntities() {
+        return toleranceEntities;
+    }
+
+    public void setToleranceEntities(Set<ToleranceEntity> toleranceEntities) {
+        this.toleranceEntities = toleranceEntities;
+    }
+
+    public NominalSizeEntity(Integer upperBound, Integer lowerBound) {
         this.upperBound = upperBound;
         this.lowerBound = lowerBound;
     }
-    public NominalSize() {
+    public NominalSizeEntity() {
 
     }
     public Integer getUpperBound() {
@@ -41,7 +55,7 @@ public class NominalSize {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        NominalSize that = (NominalSize) o;
+        NominalSizeEntity that = (NominalSizeEntity) o;
         return Objects.equals(id, that.id) && Objects.equals(upperBound, that.upperBound) && Objects.equals(lowerBound, that.lowerBound);
     }
 

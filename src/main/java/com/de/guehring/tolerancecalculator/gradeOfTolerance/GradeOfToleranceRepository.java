@@ -12,20 +12,17 @@ import java.util.Optional;
 @Repository
 public interface GradeOfToleranceRepository extends JpaRepository<GradeOfToleranceEntity,Long> {
     @Query(value = "SELECT s FROM GradeOfToleranceEntity s " +
-            "WHERE (:modelDimension is null or s.max >= :modelDimension " +
-            "and s.min < :modelDimension)")
-    List<GradeOfToleranceEntity> findGradeOfToleranceEntitiesBy(@Param("modelDimension") Long modelDimension);
+            "WHERE (:nominalDimension is null or s.max >= :nominalDimension " +
+            "and s.min < :nominalDimension)")
+    List<GradeOfToleranceEntity> findGradeOfToleranceEntitiesBy(@Param("nominalDimension") Long nominalDimension);
     @Query(value = "SELECT got " +
             "FROM GradeOfToleranceEntity got, ToleranceClassEntity tce, StandardAllowanceEntity sa " +
-            "where (:modelDimension is null or tce.max>= :modelDimension " +
-            "and tce.min < :modelDimension) " +
+            "where (:nominalDimension is null or tce.max>= :nominalDimension " +
+            "and tce.min < :nominalDimension) " +
             "and got.id = tce.gradeOfTolerance.id " +
             "and (:standardAllowanceId is null or tce.standardAllowance.id = :standardAllowanceId) " +
             "and tce.standardAllowance = sa")
-    List<GradeOfToleranceEntity> findGradeOfToleranceEntitiesBy(@Param("modelDimension") Long modelDimension, @Param("standardAllowanceId") Long standardAllowanceId);
-
-
-
-
-
+    List<GradeOfToleranceEntity> findGradeOfToleranceEntitiesBy(@Param("nominalDimension") Long nominalDimension, @Param("standardAllowanceId") Long standardAllowanceId);
+    @Query("SELECT got.id FROM GradeOfToleranceEntity got WHERE got.name = :name")
+    Long findIdByName(String name);
 }

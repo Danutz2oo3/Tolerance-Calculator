@@ -1,6 +1,6 @@
 package com.de.guehring.tolerancecalculator.standardAllowance;
 
-import com.de.guehring.tolerancecalculator.entity.Type;
+import com.de.guehring.tolerancecalculator.standardAllowance.Type;
 import com.de.guehring.tolerancecalculator.gradeOfTolerance.GradeOfToleranceEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,4 +27,8 @@ public class StandardAllowanceService {
     public List<StandardAllowanceEntity> getStandardAllowanceByGradeOfTolerance(Long modelSize, Type type, Long gradeOfToleranceId){
         return standardAllowanceRepository.findStandardAllowanceEntitiesBy(modelSize, type, gradeOfToleranceId);
     }
+    public Long findStandardAllowanceIdByName(String name, Type type) {
+        return standardAllowanceRepository.findIdByNameAndType(name,type);
+    }
+
 }
