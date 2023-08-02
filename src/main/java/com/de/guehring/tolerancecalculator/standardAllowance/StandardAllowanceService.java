@@ -27,7 +27,7 @@ public class StandardAllowanceService {
     public List<StandardAllowanceEntity> getStandardAllowanceByGradeOfTolerance(Long modelSize, Type type, Long gradeOfToleranceId){
         return standardAllowanceRepository.findStandardAllowanceEntitiesBy(modelSize, type, gradeOfToleranceId);
     }
-    public Long findStandardAllowanceIdByName(String name, Type type) {
+    public Long getStandardAllowanceIdByName(String name, Type type) {
         return standardAllowanceRepository.findIdByNameAndType(name,type);
     }
 

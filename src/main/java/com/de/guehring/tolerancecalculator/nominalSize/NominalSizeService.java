@@ -12,7 +12,7 @@ public class NominalSizeService {
     }
 
     public NominalSizeEntity getNominalDimension(Long nominalDimension){
-        return nominalSizeRepository.findBynominalDimension(nominalDimension);
+        return nominalSizeRepository.findByNominalDimension(nominalDimension);
     }
     public Long getNominalDimensionId(Long nominalDimension){
         return nominalSizeRepository.findIdByNominalDimension(nominalDimension);
