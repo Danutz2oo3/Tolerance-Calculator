@@ -22,11 +22,11 @@ public class GradeOfToleranceController {
 
     @GetMapping
     public List<GradeOfToleranceResponse> getGradeOfTolerance(
-            @RequestParam(value = "modelSize", required = false) Optional<Long> modelSizeOptional,
+            @RequestParam(value = "modelSize", required = false) Optional<Float> modelSizeOptional,
             @RequestParam(value = "standardAllowanceId", required = false) Optional<Long> standardAllowanceIdOptional
     ) {
         List<GradeOfToleranceResponse> gradeOfToleranceResponses;
-        Long modelSize = modelSizeOptional.orElse(null);
+        Float modelSize = modelSizeOptional.orElse(null);
         Long standardAllowanceId = standardAllowanceIdOptional.orElse(null);
 
         if(standardAllowanceId == null) {

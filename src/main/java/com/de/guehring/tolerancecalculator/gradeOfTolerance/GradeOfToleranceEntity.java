@@ -17,8 +17,8 @@ public class GradeOfToleranceEntity{
 
 
     private Long id;
-    private Long min;
-    private Long max;
+    private Float min;
+    private Float max;
     private String name;
 
     @OneToMany(mappedBy = "gradeOfTolerance")
@@ -32,7 +32,7 @@ public class GradeOfToleranceEntity{
         this.toleranceClassEntities = toleranceClassEntities;
     }
 
-    public GradeOfToleranceEntity(Long min, Long max, String name) {
+    public GradeOfToleranceEntity(Float min, Float max, String name) {
         this.min = min;
         this.max = max;
         this.name = name;
@@ -48,19 +48,19 @@ public class GradeOfToleranceEntity{
         this.id = id;
     }
 
-    public Long getMin() {
+    public Float getMin() {
         return min;
     }
 
-    public void setMin(Long min) {
+    public void setMin(Float min) {
         this.min = min;
     }
 
-    public Long getMax() {
+    public Float getMax() {
         return max;
     }
 
-    public void setMax(Long max) {
+    public void setMax(Float max) {
         this.max = max;
     }
 

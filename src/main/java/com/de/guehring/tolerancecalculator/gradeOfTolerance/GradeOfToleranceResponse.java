@@ -2,8 +2,8 @@ package com.de.guehring.tolerancecalculator.gradeOfTolerance;
 
 public record GradeOfToleranceResponse(
         Long id,
-        Long min,
-        Long max,
+        Float min,
+        Float max,
         String name
 ) {
 }

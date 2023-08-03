@@ -6,7 +6,7 @@ public record StandardAllowanceResponse(
          Long id,
          String name,
          Type type,
-         Long max,
-         Long min
+         Float max,
+         Float min
 ) {
 }

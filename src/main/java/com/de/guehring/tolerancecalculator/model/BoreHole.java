@@ -1,8 +1,10 @@
 package com.de.guehring.tolerancecalculator.model;
 
+import java.math.BigDecimal;
+
 public record BoreHole(
-        Long nominalDimension,
-        Float upperLimitDeviation,
-        Float lowerLimitDeviation
+        BigDecimal nominalDimension,
+        BigDecimal upperLimitDeviation,
+        BigDecimal lowerLimitDeviation
 ) {
 }

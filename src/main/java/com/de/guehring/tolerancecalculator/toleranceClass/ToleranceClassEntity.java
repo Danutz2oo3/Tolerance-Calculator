@@ -25,9 +25,9 @@ public class ToleranceClassEntity {
     @JoinColumn(name = "GoT_id")
     private GradeOfToleranceEntity gradeOfTolerance;
 
-    private Long max;
+    private Float max;
 
-    private Long min;
+    private Float min;
 
     @OneToMany(mappedBy = "toleranceClass", orphanRemoval = true)
     private Set<ToleranceEntity> toleranceEntities = new LinkedHashSet<>();

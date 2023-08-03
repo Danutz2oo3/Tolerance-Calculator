@@ -14,13 +14,13 @@ public class GradeOfToleranceService {
     public GradeOfToleranceService(GradeOfToleranceRepository gradeOfToleranceRepository) {
         this.gradeOfToleranceRepository = gradeOfToleranceRepository;
     }
-    public List<GradeOfToleranceEntity> getGradeOfTolerance(Long nominalDimension){
+    public List<GradeOfToleranceEntity> getGradeOfTolerance(Float nominalDimension){
         return gradeOfToleranceRepository.findGradeOfToleranceEntitiesBy(nominalDimension);
     }
     public List<GradeOfToleranceEntity> getAllGradeOfTolerance(){
         return gradeOfToleranceRepository.findAll();
     }
-    public List<GradeOfToleranceEntity> getGradeOfToleranceEntitiesByStandardAllowance(Long nominalDimension, Long standardAllowanceId){
+    public List<GradeOfToleranceEntity> getGradeOfToleranceEntitiesByStandardAllowance(Float nominalDimension, Long standardAllowanceId){
         return gradeOfToleranceRepository.findGradeOfToleranceEntitiesBy(nominalDimension,standardAllowanceId);
     }
     public Long getIdByName(String name) {

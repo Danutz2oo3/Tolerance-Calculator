@@ -16,7 +16,7 @@ public interface StandardAllowanceRepository extends JpaRepository<StandardAllow
             "WHERE (:nominalDimension is null or s.max >= :nominalDimension " +
             "and s.min < :nominalDimension) " +
             "and (:type is null or s.type = :type)")
-    List<StandardAllowanceEntity> findStandardAllowanceEntitiesBy(@Param("nominalDimension") Long nominalDimension, @Param("type") Type type);
+    List<StandardAllowanceEntity> findStandardAllowanceEntitiesBy(@Param("nominalDimension") Float nominalDimension, @Param("type") Type type);
 
     @Query(value = "SELECT sa " +
             "FROM GradeOfToleranceEntity got, ToleranceClassEntity tce, StandardAllowanceEntity sa " +
@@ -26,7 +26,7 @@ public interface StandardAllowanceRepository extends JpaRepository<StandardAllow
             "and (:gradeOfToleranceId is null or tce.gradeOfTolerance.id = :gradeOfToleranceId) " +
             "and tce.gradeOfTolerance = got " +
             "and (:type is null or sa.type = :type)")
-    List<StandardAllowanceEntity> findStandardAllowanceEntitiesBy(@Param("nominalDimension") Long nominalDimension, @Param("type") Type type, @Param("gradeOfToleranceId") Long gradeOfToleranceId);
+    List<StandardAllowanceEntity> findStandardAllowanceEntitiesBy(@Param("nominalDimension") Float nominalDimension, @Param("type") Type type, @Param("gradeOfToleranceId") Long gradeOfToleranceId);
 
     @Query("SELECT sa.id FROM StandardAllowanceEntity sa WHERE sa.name = :name AND sa.type = :type")
     Long findIdByNameAndType(String name, Type type);

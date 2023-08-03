@@ -17,14 +17,14 @@ public class StandardAllowanceService {
         this.standardAllowanceRepository = standardAllowanceRepository;
     }
 
-    public List<StandardAllowanceEntity> getStandardAllowance(Long modelSize, Type type) {
+    public List<StandardAllowanceEntity> getStandardAllowance(Float modelSize, Type type) {
         return standardAllowanceRepository.findStandardAllowanceEntitiesBy(modelSize, type);
     }
 
     public List<StandardAllowanceEntity> getAllStandardAllowances() {
         return standardAllowanceRepository.findAll();
     }
-    public List<StandardAllowanceEntity> getStandardAllowanceByGradeOfTolerance(Long modelSize, Type type, Long gradeOfToleranceId){
+    public List<StandardAllowanceEntity> getStandardAllowanceByGradeOfTolerance(Float modelSize, Type type, Long gradeOfToleranceId){
         return standardAllowanceRepository.findStandardAllowanceEntitiesBy(modelSize, type, gradeOfToleranceId);
     }
     public Long getStandardAllowanceIdByName(String name, Type type) {

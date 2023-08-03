@@ -24,11 +24,11 @@ public class StandardAllowanceController {
     }
 
     @GetMapping
-    public List<StandardAllowanceResponse> getStandardAllowance(@RequestParam(value = "modelSize", required = false) Optional<Long> modelSizeOptional,
+    public List<StandardAllowanceResponse> getStandardAllowance(@RequestParam(value = "modelSize", required = false) Optional<Float> modelSizeOptional,
                                                              @RequestParam(value = "type", required = false) Optional<Type> typeOptional,
                                                              @RequestParam(value = "gradeOfTolerance", required = false)Optional<Long> gOTOptional) {
         List<StandardAllowanceResponse> standardAllowanceResponses;
-        Long modelSize = modelSizeOptional.orElse(null);
+        Float modelSize = modelSizeOptional.orElse(null);
         Type type = typeOptional.orElse(null);
         Long gOT = gOTOptional.orElse(null);
 

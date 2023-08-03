@@ -18,8 +18,8 @@ public class StandardAllowanceEntity {
     private Long id;
     private String name;
     private Type type;
-    private Long max;
-    private Long min;
+    private Float max;
+    private Float min;
 
     @OneToMany(mappedBy = "standardAllowance", orphanRemoval = true)
     private Set<ToleranceClassEntity> toleranceClassEntities = new LinkedHashSet<>();
@@ -32,7 +32,7 @@ public class StandardAllowanceEntity {
         this.toleranceClassEntities = toleranceClassEntities;
     }
 
-    public StandardAllowanceEntity(String name, Type type, Long max, Long min) {
+    public StandardAllowanceEntity(String name, Type type, Float max, Float min) {
         this.name = name;
         this.max = max;
         this.type = type;
@@ -63,18 +63,18 @@ public class StandardAllowanceEntity {
         this.type = type;
     }
 
-    public Long getMax() {
+    public Float getMax() {
         return max;
     }
-    public void setMax(Long max) {
+    public void setMax(Float max) {
         this.max = max;
     }
 
-    public Long getMin() {
+    public Float getMin() {
         return min;
     }
 
-    public void setMin(Long min) {
+    public void setMin(Float min) {
         this.min = min;
     }
 

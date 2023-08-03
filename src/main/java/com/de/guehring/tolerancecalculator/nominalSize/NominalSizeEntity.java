@@ -14,8 +14,8 @@ public class NominalSizeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-    private Integer upperBound;
-    private Integer lowerBound;
+    private Float upperBound;
+    private Float lowerBound;
 
     @OneToMany(mappedBy = "nominalSize", orphanRemoval = true)
     private Set<ToleranceEntity> toleranceEntities = new LinkedHashSet<>();
@@ -28,26 +28,26 @@ public class NominalSizeEntity {
         this.toleranceEntities = toleranceEntities;
     }
 
-    public NominalSizeEntity(Integer upperBound, Integer lowerBound) {
+    public NominalSizeEntity(Float upperBound, Float lowerBound) {
         this.upperBound = upperBound;
         this.lowerBound = lowerBound;
     }
     public NominalSizeEntity() {
 
     }
-    public Integer getUpperBound() {
+    public Float getUpperBound() {
         return upperBound;
     }
 
-    public void setUpperBound(Integer upperBound) {
+    public void setUpperBound(Float upperBound) {
         this.upperBound = upperBound;
     }
 
-    public Integer getLowerBound() {
+    public Float getLowerBound() {
         return lowerBound;
     }
 
-    public void setLowerBound(Integer lowerBound) {
+    public void setLowerBound(Float lowerBound) {
         this.lowerBound = lowerBound;
     }
 

@@ -14,7 +14,7 @@ public interface GradeOfToleranceRepository extends JpaRepository<GradeOfToleran
     @Query(value = "SELECT s FROM GradeOfToleranceEntity s " +
             "WHERE (:nominalDimension is null or s.max >= :nominalDimension " +
             "and s.min < :nominalDimension)")
-    List<GradeOfToleranceEntity> findGradeOfToleranceEntitiesBy(@Param("nominalDimension") Long nominalDimension);
+    List<GradeOfToleranceEntity> findGradeOfToleranceEntitiesBy(@Param("nominalDimension") Float nominalDimension);
     @Query(value = "SELECT got " +
             "FROM GradeOfToleranceEntity got, ToleranceClassEntity tce, StandardAllowanceEntity sa " +
             "where (:nominalDimension is null or tce.max>= :nominalDimension " +
@@ -22,7 +22,7 @@ public interface GradeOfToleranceRepository extends JpaRepository<GradeOfToleran
             "and got.id = tce.gradeOfTolerance.id " +
             "and (:standardAllowanceId is null or tce.standardAllowance.id = :standardAllowanceId) " +
             "and tce.standardAllowance = sa")
-    List<GradeOfToleranceEntity> findGradeOfToleranceEntitiesBy(@Param("nominalDimension") Long nominalDimension, @Param("standardAllowanceId") Long standardAllowanceId);
+    List<GradeOfToleranceEntity> findGradeOfToleranceEntitiesBy(@Param("nominalDimension") Float nominalDimension, @Param("standardAllowanceId") Long standardAllowanceId);
     @Query("SELECT got.id FROM GradeOfToleranceEntity got WHERE got.name = :name")
     Long findIdByName(String name);
 }

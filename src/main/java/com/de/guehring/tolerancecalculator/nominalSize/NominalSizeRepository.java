@@ -12,10 +12,10 @@ public interface NominalSizeRepository extends JpaRepository<NominalSizeEntity, 
     @Query(value = "SELECT s FROM NominalSizeEntity s " +
             "WHERE s.lowerBound < :nominalDimension " +
             "AND s.upperBound  >= :nominalDimension")
-    NominalSizeEntity findByNominalDimension(@Param("nominalDimension") Long nominalDimension);
+    NominalSizeEntity findByNominalDimension(@Param("nominalDimension") Float nominalDimension);
     @Query(value = "SELECT s.id FROM NominalSizeEntity s " +
             "WHERE s.lowerBound < :nominalDimension " +
             "AND s.upperBound  >= :nominalDimension")
-    Long findIdByNominalDimension(@Param("nominalDimension") Long nominalDimension);
+    Long findIdByNominalDimension(@Param("nominalDimension") Float nominalDimension);
 
 }
