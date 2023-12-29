@@ -1,0 +1,48 @@
+<div class="header" xmlns="http://www.w3.org/1999/html">
+  <h2>Tolerance Calculator</h2>
+</div>
+<form class="form-container" [formGroup]="toleranceForm">
+
+  <mat-form-field class="size">
+    <mat-label>Diameter</mat-label>
+    <input matInput
+           formControlName="nominalDiameter">
+    <mat-error>
+      Please enter a valid number.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="standardAllowance">
+    <mat-label>Standard Allowance</mat-label>
+    <mat-select formControlName="standardAllowance">
+      <mat-option *ngFor="let posts of standardAllowancePosts$ | async" [value]="posts.id">
+        {{posts.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Grade of Tolerance</mat-label>
+    <mat-select formControlName="gradeOfTolerance">
+      <mat-option *ngFor="let post of gradeOfTolerancePosts$ | async" [value]="post.id">
+        {{post.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button (click)="handleSubmit()" mat-raised-button color="primary">Calculate</button>
+
+  <div class="answer">
+  <mat-card *ngIf="borehole" >
+    <mat-card-header >
+      <mat-card-title>Tolerance</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p> Nominal Diameter: {{ borehole.nominalDimension | number:'1.3-3'}} mm </p>
+      <p> Lower Limit Deviation: {{ borehole.lowerLimitDeviation | number:'1.3-3'}} mm</p>
+      <p> Upper Limit Deviation: {{ borehole.upperLimitDeviation | number:'1.3-3'}} mm </p>
+    </mat-card-content>
+  </mat-card>
+  </div>
+</form>
+
