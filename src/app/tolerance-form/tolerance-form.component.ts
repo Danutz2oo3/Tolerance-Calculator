@@ -15,7 +15,7 @@ interface Food {
 @Component({
   selector: 'app-tolerance-form',
   templateUrl: './tolerance-form.component.html',
-  styleUrls: ['./tolerance-form.component.css']
+  styleUrls: ['./tolerance-form.component.scss']
 })
 export class ToleranceFormComponent implements OnInit {
 
