@@ -15,7 +15,16 @@ public class GlobalExceptionHandler {
         errorResponse.setErrorMessage(ex.getMessage());
         // Set additional fields if needed
 
-        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+        HttpStatus status = determineHttpStatus(ex); // Custom method to determine status
+        return new ResponseEntity<>(errorResponse, status);
+    }
+
+    private HttpStatus determineHttpStatus(CustomException ex) {
+        // You can customize this logic based on the type of CustomException
+        // For example, return HttpStatus.NOT_FOUND for a specific scenario
+
+        // Default to HttpStatus.BAD_REQUEST if no specific logic is implemented
+        return HttpStatus.BAD_REQUEST;
     }
 
     // Add other exception handlers for different types of exceptions if needed
