@@ -1,5 +1,6 @@
-<app-tolerance-form></app-tolerance-form>
-
-
-
-
+<div>
+  <app-login-form (signIn)="handleSignIn()" [hidden]="!showLoginForm"  [@fadeInOut]></app-login-form>
+  <app-user-interface (logOut)="handleLogOut()" (calculator)="handleCalculator()" (history)="handleHistory()" [hidden]="!showUserInterface" [@fadeInOut]></app-user-interface>
+  <app-tolerance-form (back)="handleBack()" [hidden]="!showToleranceForm" [@fadeInOut]></app-tolerance-form>
+  <app-history (back)="handleBack()" [hidden]="!showHistory" [@fadeInOut]></app-history>
+</div>

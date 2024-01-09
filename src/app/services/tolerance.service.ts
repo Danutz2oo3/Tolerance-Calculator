@@ -38,4 +38,8 @@ export class ToleranceService {
     params = params.append('gradeOfTolerance', gradeOfTolerance.toString());
     return this.http.get<Borehole>('http://localhost:8080/api/v1/tolerance', {params});
   }
+  postTolerance(nominalDimension: number, upperLimitDeviation: number, lowerLimitDeviation: number, id: number): Observable<any> {
+    const url = `http://localhost:8080/api/v1/history/add?nominalDimension=${nominalDimension}&upperLimitDeviation=${upperLimitDeviation}&lowerLimitDeviation=${lowerLimitDeviation}&user_id=${id}`;
+    return this.http.post<any>(url, {});
+  }
 }

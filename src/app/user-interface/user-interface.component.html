@@ -1,0 +1,32 @@
+<!-- user-interface.component.html -->
+<div class="header">
+  <h2>User Interface</h2>
+</div>
+
+<div class="container">
+  <div class="account-circle">
+    <span class="material-icons">account_circle</span>
+  </div>
+  <div class="user-info">
+    <p>Username: {{ userData?.username }}</p>
+    <p>Email: {{ userData?.email }}</p>
+  </div>
+  <div class="button-container">
+    <button class="icon-button calculate-button" (click)="onCalculatorClick()">
+      <span class="material-icons">calculate</span>
+      <span>Calculate</span>
+    </button>
+
+    <button class="icon-button history-button" (click)="onHistoryClick()">
+      <span class="material-icons">history</span>
+      <span>History</span>
+    </button>
+  </div>
+
+  <div class="logout-button">
+    <button class="icon-button" (click)="onLogOutClick()">
+      <span class="material-icons">logout</span>
+      <span>Log Out</span>
+    </button>
+  </div>
+</div>

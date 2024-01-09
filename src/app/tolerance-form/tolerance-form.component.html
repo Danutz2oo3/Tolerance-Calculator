@@ -1,8 +1,11 @@
+
 <div class="header" xmlns="http://www.w3.org/1999/html">
+  <button class="icon-button" (click)="handleBack()">
+    <span class="material-icons">arrow_back</span>
+  </button>
   <h2>Tolerance Calculator</h2>
 </div>
 <form class="form-container" [formGroup]="toleranceForm">
-
   <mat-form-field class="size">
     <mat-label>Diameter</mat-label>
     <input matInput
@@ -29,11 +32,16 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+  <div class="buttons">
+    <button class="calculate_button"(click)="handleSubmit()" mat-raised-button color="primary">Calculate</button>
+    <button class="clear_button" (click)="clearForm()" mat-raised-button color="warn">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
 
-  <button (click)="handleSubmit()" mat-raised-button color="primary">Calculate</button>
 
   <div class="answer">
-  <mat-card *ngIf="borehole" >
+  <mat-card *ngIf="displayAnswer" >
     <mat-card-header >
       <mat-card-title>Tolerance</mat-card-title>
     </mat-card-header>

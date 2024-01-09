@@ -1,10 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ToleranceService} from "../services/tolerance.service";
 import {debounceTime, Observable} from "rxjs";
 import {gradeOfTolerance} from "../model/gradeOfTolerance.model";
 import {standardAllowance} from "../model/standardAllowance.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Borehole} from "../model/borehole.model";
+import {UserService} from "../services/user.service";
+import {User} from "../model/user.model";
 
 interface Food {
   value: string;
@@ -24,13 +26,21 @@ export class ToleranceFormComponent implements OnInit {
   gradeOfTolerancePosts$!: Observable<gradeOfTolerance[]>;
   borehole!: Borehole;
 
+  userData!: User;
+
+  displayAnswer: boolean = false;
+
   toleranceForm!: FormGroup;
 
   displayedColumns: string[] = ['nominalDiameter', 'lowerDeviation', 'upperDeviation'];
 
 
-  constructor(private ts: ToleranceService, private formBuilder: FormBuilder) {
+
+  constructor(private ts: ToleranceService,
+              private formBuilder: FormBuilder,
+              private userService: UserService){
   }
+
 
 
   ngOnInit() {
@@ -44,6 +54,13 @@ export class ToleranceFormComponent implements OnInit {
 
     this.loadGradeOfTolerancePost();
 
+    this.userService.userData$.subscribe((userData) => {
+      this.userData = userData;
+      console.log('Received data in tolerance component:', userData);
+    }, error => {
+      console.log(error);
+    }
+    );
 
     // Subscribe to value changes for standardAllowance form control
     this.toleranceForm.get('standardAllowance')?.valueChanges
@@ -73,6 +90,20 @@ export class ToleranceFormComponent implements OnInit {
     this.ts.getTolerance(nominalDiameter, standardAllowance, gradeOfTolerance)
       .subscribe((data: Borehole) => {
         this.borehole = data;
+        console.log(this.userData);
+        if (this.borehole) {
+          this.displayAnswer = true;
+          console.log(this.borehole);
+          this.ts.postTolerance(this.borehole.nominalDimension, this.borehole.upperLimitDeviation, this.borehole.lowerLimitDeviation, this.userData.id).subscribe({
+            next: (postData) => {
+              console.log(postData);
+              console.log('success');
+            },
+            error: (postError) => {
+              console.log(postError);
+            }
+          });
+        }
       });
   }
 
@@ -83,5 +114,13 @@ export class ToleranceFormComponent implements OnInit {
     console.log(this.toleranceForm.value);
     this.loadTolerance(this.toleranceForm.value.nominalDiameter, this.toleranceForm.value.standardAllowance, this.toleranceForm.value.gradeOfTolerance);
   }
-
+  clearForm() {
+    this.toleranceForm.reset();
+    this.displayAnswer = false;
+  }
+  @Output() back: EventEmitter<void> = new EventEmitter<void>();
+  handleBack(): void {
+    this.clearForm();
+    this.back.emit();
+  }
 }

@@ -1,0 +1,47 @@
+<html lang="en">
+<body>
+    <div class="container" id="container">
+        <div class="form-container sign-up" [formGroup]="signUpForm">
+            <form>
+                <h1>Create Account</h1>
+                <input type="text" placeholder="Username" formControlName="username">
+                <input type="email" placeholder="Email" formControlName="email">
+              <div *ngIf="signUpForm.get('email')?.hasError('invalidEmail')">
+                <!-- Display error for custom email validation -->
+                Invalid email format.
+              </div>
+                <input type="password" placeholder="Password" formControlName="password">
+                <input type="password" placeholder="Confirm Password" formControlName="confirmPassword">
+              <div *ngIf="signUpForm.hasError('passwordMismatch')">
+                <!-- Display error for password mismatch -->
+                Passwords do not match.
+              </div>
+                <button type="button" (click)="onSignUpClick()">Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in" [formGroup]="loginForm">
+            <form>
+                <h1>Sign In</h1>
+                <input type="email" placeholder="Email or Username" formControlName="emailOrUsername">
+                <input type="password" placeholder="Password" formControlName="password">
+                <button type="button" (click)="onSignInClick()">Sign In</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome, Friend!</h1>
+                    <p>If you already have an account, press SIGN IN</p>
+                    <button class="hidden" id="login">Sign In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Welcome, Friend!</h1>
+                    <p>If you do not have an account, press SIGN UP</p>
+                    <button class="hidden" id="register">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

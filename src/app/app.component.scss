@@ -7,3 +7,12 @@
 .example-full-width {
   width: 100%;
 }
+
+.fade-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.fade-container > * {
+  flex: 1;
+}

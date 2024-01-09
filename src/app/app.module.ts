@@ -13,25 +13,34 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
 import {MatTableModule} from "@angular/material/table";
+import {MatIconModule} from '@angular/material/icon';
+import { LoginFormComponent } from './login-form/login-form.component';
+import { UserInterfaceComponent } from './user-interface/user-interface.component';
+import { HistoryComponent } from './history/history.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ToleranceFormComponent
+    ToleranceFormComponent,
+    LoginFormComponent,
+    HistoryComponent
   ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        HttpClientModule,
-        MatSlideToggleModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatSelectModule,
-        ReactiveFormsModule,
-        MatButtonModule,
-        MatCardModule,
-        MatTableModule
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MatSlideToggleModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatCardModule,
+    MatTableModule,
+    MatIconModule,
+    UserInterfaceComponent
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

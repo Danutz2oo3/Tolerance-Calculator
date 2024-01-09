@@ -1,0 +1,17 @@
+<div class="header">
+  <button class="icon-button" (click)="handleBack()">
+    <span class="material-icons">arrow_back</span>
+  </button>
+  <h2>History</h2>
+</div>
+
+<div class="history-container">
+  <h2>Calculation History</h2>
+  <ul class="history-list">
+    <li *ngFor="let elem of historyElem" class="history-item">
+      <p>Nominal Diameter: {{ elem.nominalDimension | number:'1.3-3'}} mm</p>
+      <p>Lower Limit Deviation: {{ elem.lowerLimitDeviation | number:'1.3-3'}} mm</p>
+      <p>Upper Limit Deviation: {{ elem.upperLimitDeviation | number:'1.3-3'}} mm</p>
+    </li>
+  </ul>
+</div>
